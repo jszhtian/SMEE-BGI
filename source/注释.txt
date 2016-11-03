@@ -1,0 +1,34 @@
+https://bbs.sumisora.org/read.php?tid=11042351依然有效
+https://bbs.sumisora.org/read.php?tid=10958598边界判定
+
+Call GetSystemDefaultLangID->Move eax,0x411
+CreateFontA 9thvar fdwCharSet 0x01->0x86
+MultiByteToWideChar 不需要改
+cmp eax, 0EF40 项目不存在
+cmp ebx, 0EF40 ; 改为 0FE40
+cmp ebx, 8140 ; 8140 是 Shift-JIS 编码中的全角空格，所以此处应改为 0A1A1 （GBK 的全角空格）
+
+cmp al,0A0 0xA0->0xFF
+cmp al,09F 0x9F->0xFF
+PS:这破玩意两个还不在一起，白折腾了2个小时。
+
+注意！！！
+文本长度可以缩减，但填0后的文本无效直到下一条代码被执行
+02400/02410存放图片
+02600 MAP图片
+02700 肖像
+
+02780 封包内存在图片形式文字！！
+02900 title图片
+02950 OP MPG1 文件名：kanojostep_op.mp（OP替换需要kanojostep_op.mpg，格式不限）
+游戏title 默认人名：data01200.arc-》setup 
+
+人名被替换一次后会有效直到剧本结束
+回想模式BGM名称不是文字，应该是图片
+03000 各种声效 ogg文件
+03400 BGM
+04100 语音
+06000 疑似动画封包
+没有看见ED数据，ED数据包位置未知！！
+log界面选择肢显示为日文乱码！！（在sysprg.arc-》scrslct._bp中）
+
